@@ -1,0 +1,11 @@
+@import "~bootstrap";
+@import "./variables";
+
+:export {
+  xs: map-get($my-breakpoints, xs);
+  sm: map-get($my-breakpoints, sm);
+  md: map-get($my-breakpoints, md);
+  lg: map-get($my-breakpoints, lg);
+  xl: map-get($my-breakpoints, xl);
+  xxl: map-get($my-breakpoints, xxl);
+}
