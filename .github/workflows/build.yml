@@ -27,7 +27,7 @@ jobs:
         name: disc
         path: ${{ github.workspace }}/dist
 
-    - name: Upload S3
+    - name: Upload S3 2
       uses: shallwefootball/upload-s3-action@master
       id: S3
       with:
