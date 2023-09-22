@@ -12,6 +12,11 @@ export default defineConfig({
     host: true,
     port: 3000,
   },
+  resolve: {
+    alias: {
+      "~bootstrap": resolve(__dirname, "node_modules/bootstrap"),
+    },
+  },
   build: {
     rollupOptions: {
       input: {
