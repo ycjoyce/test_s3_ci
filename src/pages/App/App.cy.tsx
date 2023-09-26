@@ -8,10 +8,10 @@ describe("<App />", () => {
     cy.mount(<Basic />);
     cy.get("div").should("contain.text", "Hello mooBiz");
 
-    cy.get("#btn-test").click();
+    cy.get("[data-cy='btn-test']").click();
     cy.get("div").should("contain.text", "Hello Readmoo");
 
-    cy.get("#btn-test").click();
+    cy.get("[data-cy='btn-test']").click();
     cy.get("div").should("contain.text", "Hello mooBiz");
   });
 });

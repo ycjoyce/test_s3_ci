@@ -7,7 +7,8 @@ const App = () => {
     <div>
       Hello {content}
       <button
-        id="btn-test"
+        data-cy="btn-test"
+        className="btn btn-primary"
         onClick={() => {
           setContent((p) => (p === "mooBiz" ? "Readmoo" : "mooBiz"));
         }}

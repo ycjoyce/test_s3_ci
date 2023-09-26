@@ -17,37 +17,8 @@ jobs:
         start: npm run dev
         wait-on: 'http://localhost:3000'
 
-    - name: Upload test screenshots
-      uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-        name: cypress-screenshots
-        path: cypress/screenshots
-        if-no-files-found: ignore
-
-    - name: Upload test videos
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: cypress-videos
-        path: cypress/videos
-        if-no-files-found: ignore
-
-  download:
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download test screenshots
-        uses: actions/download-artifact@v3
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-
-      - name: Download test videos
-        uses: actions/download-artifact@v3
-        with:
-          name: cypress-videos
-          path: cypress/videos
+    - name: Set code coverage commit status
+      run: npx -p check-code-coverage set-gh-status
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
