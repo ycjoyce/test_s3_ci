@@ -4,9 +4,7 @@
       "target": "temporary-public-storage"
     },
     "assert": {
-      "assertions": {
-        "preset": "lighthouse:no-pwa"
-      }
+      "preset": "lighthouse:no-pwa"
     }
   }
 }
