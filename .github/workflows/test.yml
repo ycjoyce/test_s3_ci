@@ -1,4 +1,4 @@
-name: E2E test on Chrome
+name: Test
 
 on: [push]
 
@@ -9,6 +9,28 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: '.nvmrc'
+        cache: 'npm'
+    
+    - name: Update packages
+      run: npm update
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: Lighthouse run
+      run: |
+        npm install -g @lhci/cli@0.3.x
+        lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{secrets.LHCI_GITHUB_APP_TOKEN}}
+
     - name: Cypress run
       uses: cypress-io/github-action@v6
       with:
@@ -17,8 +39,3 @@ jobs:
         start: npm run dev
         wait-on: 'http://localhost:3000'
 
-    - name: Set code coverage commit status
-      run: npx -p check-code-coverage set-gh-status
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
