@@ -3,11 +3,17 @@ name: E2E test on Chrome
 on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: '.nvmrc'
+        cache: 'npm'
     
     - name: Cypress run
       uses: cypress-io/github-action@v6
@@ -16,3 +22,17 @@ jobs:
         build: npm run build
         start: npm run dev
         wait-on: 'http://localhost:3000'
+
+    - name: Upload test screenshots
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+        if-no-files-found: ignore
+
+    - name: Upload test videos
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-videos
+        path: cypress/videos
+        if-no-files-found: ignore
