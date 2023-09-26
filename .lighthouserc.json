@@ -12,11 +12,6 @@
           { "aggregationMethod": "optimistic", "minScore": 0.95 }
         ]
       }
-    },
-    "collect": {
-      "settings": {
-        "hostname": "127.0.0.1"
-      }
     }
   }
 }
