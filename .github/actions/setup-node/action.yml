@@ -1,4 +1,5 @@
 name: Setup Node and install dependencies
+description: "Install dependencies"
 
 runs:
   using: "composite"
@@ -8,9 +9,11 @@ runs:
       with:
         node-version-file: ".nvmrc"
         cache: "npm"
+      shell: bash
 
     - name: Update packages
       run: npm update
+      shell: bash
 
     - name: Install dependencies
       run: npm ci
