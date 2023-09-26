@@ -17,6 +17,12 @@ jobs:
         start: npm run dev
         wait-on: 'http://localhost:3000'
 
+    - name: Upload Coverage result
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage
+        path: ${{ github.workspace }}/coverage
+
   lhci:
     runs-on: ubuntu-latest
 
