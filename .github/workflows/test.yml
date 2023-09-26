@@ -20,15 +20,15 @@ jobs:
     - name: Upload test screenshots
       uses: actions/upload-artifact@v3
       with:
-        name: dist
-        path: dist
+        name: cypress-screenshots
+        path: cypress/screenshots
         if-no-files-found: ignore
 
     - name: Upload test videos
       uses: actions/upload-artifact@v3
       with:
-        name: dist
-        path: dist
+        name: cypress-videos
+        path: cypress/videos
         if-no-files-found: ignore
 
   download:
@@ -41,11 +41,11 @@ jobs:
       - name: Download test screenshots
         uses: actions/download-artifact@v3
         with:
-          name: dist
-          path: dist
+          name: cypress-screenshots
+          path: cypress/screenshots
 
       - name: Download test videos
         uses: actions/download-artifact@v3
         with:
-          name: dist
-          path: dist
+          name: cypress-videos
+          path: cypress/videos
