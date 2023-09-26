@@ -20,13 +20,32 @@ jobs:
     - name: Upload test screenshots
       uses: actions/upload-artifact@v3
       with:
-        name: cypress-screenshots
-        path: ${{ github.workspace }}/cypress/screenshots
+        name: dist
+        path: dist
         if-no-files-found: ignore
 
     - name: Upload test videos
       uses: actions/upload-artifact@v3
       with:
-        name: cypress-videos
-        path: ${{ github.workspace }}/cypress/videos
+        name: dist
+        path: dist
         if-no-files-found: ignore
+
+  download:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download test screenshots
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+      - name: Download test videos
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
