@@ -2,6 +2,11 @@
   "ci": {
     "upload": {
       "target": "temporary-public-storage"
+    },
+    "assert": {
+      "assertions": {
+        "preset": "lighthouse:no-pwa"
+      }
     }
   }
 }
