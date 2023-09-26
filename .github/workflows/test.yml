@@ -19,6 +19,7 @@ jobs:
 
     - name: Upload test screenshots
       uses: actions/upload-artifact@v3
+      if: failure()
       with:
         name: cypress-screenshots
         path: cypress/screenshots
@@ -26,6 +27,7 @@ jobs:
 
     - name: Upload test videos
       uses: actions/upload-artifact@v3
+      if: always()
       with:
         name: cypress-videos
         path: cypress/videos
